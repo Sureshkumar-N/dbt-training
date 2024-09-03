@@ -1,0 +1,70 @@
+version: 2
+
+sources:
+    - name: shop
+      description: Data from Shop dataset
+      database: raw
+      schema: shop
+      tables:
+
+          - name: customers
+            description: Raw orders data
+            columns:
+              - name: id
+                description: customer id
+                tests:
+                  - not_null
+              - name: first_name
+                description: customer first name
+                tests:
+                  - not_null
+              - name: last_name
+                description: customer last name
+                tests:
+                  - not_null
+          
+          - name: orders
+            description: Raw data for orders
+            columns:
+              - name: order_id
+                description: Order identifier
+                tests:
+                  - not_null
+              - name: user_id
+                description: user id refers this order belongs to which customer
+                tests: 
+                  - not_null
+              - name: order_date
+                description: date of order
+                tests:
+                  - not_null
+              - name: status
+                description: status of that order
+              - name: _etl_loaded_at
+                description: date of the etl process
+          - name: payment
+            description: Raw data for payment
+            columns:
+              - name: id
+                description: payment identifier
+                tests:
+                  - not_null
+              - name: orderid
+                description: order id refers this payment belongs to which order
+                tests: 
+                  - not_null
+              - name: paymentmethod
+                description: type of payment
+                tests:
+                  - not_null
+              - name: status
+                description: status of that payment
+              - name: amount
+                description: amount
+              - name: created
+                description: payment of payment
+              - name: _batched_at
+                description: batched at
+
+
+          
